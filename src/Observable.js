@@ -4,13 +4,19 @@ class Observable {
 	}
 
 	// Method to add a subscriber
-	subscribe(fn) {}
+	subscribe(fn) {
+		this.subscribers.push(fn);
+	}
 
-	// Method to add a subscriber
-	unsubscribe(fn) {}
+	// Method to remove a subscriber
+	unsubscribe(fn) {
+		this.subscribers = this.subscribers.filter(subscriber => subscriber !== fn);
+	}
 
 	// Method to notify all subscribers
-	notify(data) {}
+	notify(data) {
+		this.subscribers.forEach(subscriber => subscriber(data));
+	}
 }
 
 module.exports = Observable
